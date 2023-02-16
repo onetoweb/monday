@@ -1,4 +1,4 @@
-# Onetoweb Monday Api Client
+# Monday Api Client
 
 ## Installing
 
