@@ -1,0 +1,31 @@
+{
+    "name": "onetoweb/monday",
+    "description": "Monday API Client",
+    "keywords": [
+        "api",
+        "php",
+        "monday"
+    ],
+    "type": "library",
+    "homepage": "https://github.com/onetoweb/monday",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jonathan van 't Ende",
+            "email": "jvantende@onetoweb.nl"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "guzzlehttp/guzzle" : "^6.0 || ^7.0",
+        "symfony/polyfill-php80": "^1.27"
+    },
+    "require-dev": {
+        "symfony/error-handler": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Onetoweb\\Monday\\": "src/"
+        }
+    }
+}
