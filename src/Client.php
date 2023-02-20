@@ -64,14 +64,15 @@ class Client
         $this->team = new Endpoint\Team($this);
         $this->update = new Endpoint\Update($this);
         $this->user = new Endpoint\User($this);
+        $this->workspace = new Endpoint\Workspace($this);
     }
     
     /**
      * @param PayloadInterface $payload
      * 
-     * @return array|null
+     * @return array
      */
-    public function request(PayloadInterface $payload): ?array
+    public function request(PayloadInterface $payload): array
     {
         // build options
         $options = [
@@ -80,10 +81,11 @@ class Client
                 'Content-Type' => 'application/json',
                 'Authorization' => $this->apiKey
             ],
+            // add json payload
+            RequestOptions::JSON => [
+                'query' => (string) $payload
+            ]
         ];
-        
-        // add json payload
-        $options[RequestOptions::JSON]['query'] = (string) $payload;
         
         // make request
         $response = (new GuzzleCLient())->request(self::METHOD_POST, self::BASE_URL, $options);

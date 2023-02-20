@@ -44,3 +44,4 @@ Examples
 * `Teams <team.rst>`_
 * `Updates <update.rst>`_
 * `Users <user.rst>`_
+* `Workspaces <workspace.rst>`_
