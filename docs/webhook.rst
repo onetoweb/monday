@@ -37,7 +37,7 @@ Before you create a webhook you must acknowledge the webhook challenge
     
     require 'vendor/autoload.php';
     
-    // add this line of code to the script you want to receive de webhook data on (e.g. https://example.com/webhook.php) 
+    // add this line of code to the script you want to receive the webhook data on (e.g. https://example.com/webhook.php) 
     \Onetoweb\Monday\Webhook::acknowledge();
 
 Create the webhook
