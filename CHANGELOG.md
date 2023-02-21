@@ -4,6 +4,8 @@
 
 - Initial release
 
-## [1.0.1] - 2023-02-20
+## [1.0.1] - 2023-02-21
 
 - Added workspace endpoint
+- Added webhook endpoint
+- Added webhook helper class to acknowledge webhook challenge

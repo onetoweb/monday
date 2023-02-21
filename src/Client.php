@@ -64,6 +64,7 @@ class Client
         $this->team = new Endpoint\Team($this);
         $this->update = new Endpoint\Update($this);
         $this->user = new Endpoint\User($this);
+        $this->webhook = new Endpoint\Webhook($this);
         $this->workspace = new Endpoint\Workspace($this);
     }
     

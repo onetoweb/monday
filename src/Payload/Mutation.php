@@ -48,8 +48,10 @@ class Mutation extends AbstractPayload
             $i = 0;
             foreach ($this->fields as $fieldName => $value) {
                 
-                if (is_array($value)) {
+                if (is_array($value) and array_is_list($value)) {
                     $this->payload .= sprintf('%s: [%s] ', $fieldName, implode(', ', $value));
+                } elseif (is_array($value)) {
+                    $this->payload .= sprintf('%s: "%s" ', $fieldName, addslashes(json_encode($value)));
                 } elseif (str_contains($value, ' ')) {
                     $this->payload .= sprintf('%s: "%s"', $fieldName, $value);
                 } else {
