@@ -44,9 +44,9 @@ class Webhook extends AbstractEndpoint
             $data['config'] = $config;
         }
         
-        $query = new Mutation('create_webhook', $data, ['id', 'board_id']);
+        $mutation = new Mutation('create_webhook', $data, ['id', 'board_id']);
         
-        return $this->client->request($query);
+        return $this->client->request($mutation);
     }
     
     /**
@@ -56,8 +56,8 @@ class Webhook extends AbstractEndpoint
      */
     public function delete(int $id): array
     {
-        $query = new Mutation('delete_webhook', ['id' => $id], ['id', 'board_id']);
+        $mutation = new Mutation('delete_webhook', ['id' => $id], ['id', 'board_id']);
         
-        return $this->client->request($query);
+        return $this->client->request($mutation);
     }
 }

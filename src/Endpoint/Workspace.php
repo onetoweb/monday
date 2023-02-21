@@ -30,9 +30,9 @@ class Workspace extends AbstractEndpoint
      */
     public function create(array $data = []): array
     {
-        $query = new Mutation('create_workspace', $data, ['id']);
+        $mutation = new Mutation('create_workspace', $data, ['id']);
         
-        return $this->client->request($query);
+        return $this->client->request($mutation);
     }
     
     /**
@@ -42,11 +42,11 @@ class Workspace extends AbstractEndpoint
      */
     public function delete(int $id): array
     {
-        $query = new Mutation('delete_workspace', [
+        $mutation = new Mutation('delete_workspace', [
             'workspace_id' => $id,
         ], ['id']);
         
-        return $this->client->request($query);
+        return $this->client->request($mutation);
     }
     
     /**
@@ -67,9 +67,9 @@ class Workspace extends AbstractEndpoint
             $data['kind'] = $kind;
         }
         
-        $query = new Mutation('add_users_to_workspace', $data, ['id']);
+        $mutation = new Mutation('add_users_to_workspace', $data, ['id']);
         
-        return $this->client->request($query);
+        return $this->client->request($mutation);
     }
     
     /**
@@ -80,12 +80,12 @@ class Workspace extends AbstractEndpoint
      */
     public function removeUsers(int $id, array $userIds): array
     {
-        $query = new Mutation('delete_users_from_workspace', [
+        $mutation = new Mutation('delete_users_from_workspace', [
             'workspace_id' => $id,
             'user_ids' => $userIds
         ], ['id']);
         
-        return $this->client->request($query);
+        return $this->client->request($mutation);
     }
     
     /**
@@ -96,12 +96,12 @@ class Workspace extends AbstractEndpoint
      */
     public function addTeams(int $id, array $teamIds): array
     {
-        $query = new Mutation('add_teams_to_workspace', [
+        $mutation = new Mutation('add_teams_to_workspace', [
             'workspace_id' => $id,
             'team_ids' => $teamIds
         ], ['id']);
         
-        return $this->client->request($query);
+        return $this->client->request($mutation);
     }
     
     /**
@@ -112,11 +112,11 @@ class Workspace extends AbstractEndpoint
      */
     public function removeTeams(int $id, array $teamIds): array
     {
-        $query = new Mutation('delete_teams_from_workspace', [
+        $mutation = new Mutation('delete_teams_from_workspace', [
             'workspace_id' => $id,
             'team_ids' => $teamIds
         ], ['id']);
         
-        return $this->client->request($query);
+        return $this->client->request($mutation);
     }
 }
