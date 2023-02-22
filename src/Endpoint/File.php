@@ -2,7 +2,7 @@
 
 namespace Onetoweb\Monday\Endpoint;
 
-use Onetoweb\Monday\Payload\Query;
+use Onetoweb\Monday\Payload\Payload;
 
 /**
  * File Endpoint.
@@ -17,10 +17,10 @@ class File extends AbstractEndpoint
      */
     public function read(array $fields = [], array $arguments = []): array
     {
-        $query = new Query('query', [], [
-            new Query('assets', $arguments, $fields)
+        $payload = new Payload('query', [], [
+            new Payload('assets', $arguments, $fields)
         ]);
         
-        return $this->client->request($query);
+        return $this->client->request($payload);
     }
 }

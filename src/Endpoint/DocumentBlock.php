@@ -2,7 +2,7 @@
 
 namespace Onetoweb\Monday\Endpoint;
 
-use Onetoweb\Monday\Payload\Query;
+use Onetoweb\Monday\Payload\Payload;
 
 /**
  * Document Block Endpoint.
@@ -17,12 +17,12 @@ class DocumentBlock extends AbstractEndpoint
      */
     public function read(array $fields = [], array $arguments = []): array
     {
-        $query = new Query('query', [], [
-            new Query('docs', $arguments, [
-                new Query('blocks', [], $fields)
+        $payload = new Payload('query', [], [
+            new Payload('docs', $arguments, [
+                new Payload('blocks', [], $fields)
             ])
         ]);
         
-        return $this->client->request($query);
+        return $this->client->request($payload);
     }
 }

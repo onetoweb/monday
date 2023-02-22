@@ -2,7 +2,7 @@
 
 namespace Onetoweb\Monday\Endpoint;
 
-use Onetoweb\Monday\Payload\{Query, Mutation};
+use Onetoweb\Monday\Payload\Payload;
 
 /**
  * Workspace Endpoint.
@@ -16,11 +16,11 @@ class Workspace extends AbstractEndpoint
      */
     public function read(array $fields = []): array
     {
-        $query = new Query('query', [], [
-            new Query('workspaces', [], $fields)
+        $payload = new Payload('query', [], [
+            new Payload('workspaces', [], $fields)
         ]);
         
-        return $this->client->request($query);
+        return $this->client->request($payload);
     }
     
     /**
@@ -30,9 +30,11 @@ class Workspace extends AbstractEndpoint
      */
     public function create(array $data = []): array
     {
-        $mutation = new Mutation('create_workspace', $data, ['id']);
+        $payload = new Payload('mutation', [], [
+            new Payload('create_workspace', $data, ['id'])
+        ]);
         
-        return $this->client->request($mutation);
+        return $this->client->request($payload);
     }
     
     /**
@@ -42,11 +44,15 @@ class Workspace extends AbstractEndpoint
      */
     public function delete(int $id): array
     {
-        $mutation = new Mutation('delete_workspace', [
-            'workspace_id' => $id,
-        ], ['id']);
+        $payload = new Payload('mutation', [], [
+            new Payload('delete_workspace', [
+                'workspace_id' => $id,
+            ], [
+                'id'
+            ])
+        ]);
         
-        return $this->client->request($mutation);
+        return $this->client->request($payload);
     }
     
     /**
@@ -67,9 +73,11 @@ class Workspace extends AbstractEndpoint
             $data['kind'] = $kind;
         }
         
-        $mutation = new Mutation('add_users_to_workspace', $data, ['id']);
+        $payload = new Payload('mutation', [], [
+            new Payload('add_users_to_workspace', $data, ['id'])
+        ]);
         
-        return $this->client->request($mutation);
+        return $this->client->request($payload);
     }
     
     /**
@@ -80,12 +88,16 @@ class Workspace extends AbstractEndpoint
      */
     public function removeUsers(int $id, array $userIds): array
     {
-        $mutation = new Mutation('delete_users_from_workspace', [
-            'workspace_id' => $id,
-            'user_ids' => $userIds
-        ], ['id']);
+        $payload = new Payload('mutation', [], [
+            new Payload('delete_users_from_workspace', [
+                'workspace_id' => $id,
+                'user_ids' => $userIds
+            ], [
+                'id'
+            ])
+        ]);
         
-        return $this->client->request($mutation);
+        return $this->client->request($payload);
     }
     
     /**
@@ -96,12 +108,14 @@ class Workspace extends AbstractEndpoint
      */
     public function addTeams(int $id, array $teamIds): array
     {
-        $mutation = new Mutation('add_teams_to_workspace', [
-            'workspace_id' => $id,
-            'team_ids' => $teamIds
-        ], ['id']);
+        $payload = new Payload('mutation', [], [
+            new Payload('add_teams_to_workspace', [
+                'workspace_id' => $id,
+                'team_ids' => $teamIds
+            ], ['id'])
+        ]);
         
-        return $this->client->request($mutation);
+        return $this->client->request($payload);
     }
     
     /**
@@ -112,11 +126,13 @@ class Workspace extends AbstractEndpoint
      */
     public function removeTeams(int $id, array $teamIds): array
     {
-        $mutation = new Mutation('delete_teams_from_workspace', [
-            'workspace_id' => $id,
-            'team_ids' => $teamIds
-        ], ['id']);
+        $payload = new Payload('mutation', [], [
+            new Payload('delete_teams_from_workspace', [
+                'workspace_id' => $id,
+                'team_ids' => $teamIds
+            ], ['id'])
+        ]);
         
-        return $this->client->request($mutation);
+        return $this->client->request($payload);
     }
 }

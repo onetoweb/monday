@@ -20,7 +20,7 @@ Read activity logs
     $from = (new DateTime())->modify('-10 days');
     $to = new DateTime();
     
-    $result = $client->activityLogs->read([
+    $result = $client->activityLog->read([
         // activity logs fields to select
         'id',
         'event',

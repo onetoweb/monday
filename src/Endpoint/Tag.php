@@ -2,7 +2,7 @@
 
 namespace Onetoweb\Monday\Endpoint;
 
-use Onetoweb\Monday\Payload\{Query, Mutation};
+use Onetoweb\Monday\Payload\Payload;
 
 /**
  * Tag Endpoint.
@@ -17,11 +17,11 @@ class Tag extends AbstractEndpoint
      */
     public function read(array $fields = [], array $arguments = []): array
     {
-        $query = new Query('query', [], [
-            new Query('tags', $arguments, $fields)
+        $payload = new Payload('query', [], [
+            new Payload('tags', $arguments, $fields)
         ]);
         
-        return $this->client->request($query);
+        return $this->client->request($payload);
     }
     
     /**
@@ -40,8 +40,10 @@ class Tag extends AbstractEndpoint
             $arguments['board_id'] = $boardId;
         }
         
-        $mutation = new Mutation('create_or_get_tag', $arguments, ['id']);
+        $payload = new Payload('mutation', [], [
+            new Payload('create_or_get_tag', $arguments, ['id'])
+        ]);
         
-        return $this->client->request($mutation);
+        return $this->client->request($payload);
     }
 }

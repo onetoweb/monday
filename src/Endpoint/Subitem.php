@@ -2,7 +2,7 @@
 
 namespace Onetoweb\Monday\Endpoint;
 
-use Onetoweb\Monday\Payload\Query;
+use Onetoweb\Monday\Payload\Payload;
 
 /**
  * Subitem Endpoint.
@@ -18,14 +18,14 @@ class Subitem extends AbstractEndpoint
      */
     public function read(array $fields = [], array $boardArguments = [], array $itemArguments = []): array
     {
-        $query = new Query('query', [], [
-            new Query('boards', $boardArguments, [
-                new Query('items', $itemArguments, [
-                    new Query('subitems ', [], $fields)
+        $payload = new Payload('query', [], [
+            new Payload('boards', $boardArguments, [
+                new Payload('items', $itemArguments, [
+                    new Payload('subitems ', [], $fields)
                 ])
             ])
         ]);
         
-        return $this->client->request($query);
+        return $this->client->request($payload);
     }
 }

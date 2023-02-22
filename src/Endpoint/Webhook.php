@@ -2,7 +2,7 @@
 
 namespace Onetoweb\Monday\Endpoint;
 
-use Onetoweb\Monday\Payload\{Query, Mutation};
+use Onetoweb\Monday\Payload\Payload;
 
 /**
  * Webhook Endpoint.
@@ -17,11 +17,11 @@ class Webhook extends AbstractEndpoint
      */
     public function read(array $fields = [], array $arguments = []): array
     {
-        $query = new Query('query', [], [
-            new Query('webhooks', $arguments, $fields),
+        $payload = new Payload('query', [], [
+            new Payload('webhooks', $arguments, $fields)
         ]);
         
-        return $this->client->request($query);
+        return $this->client->request($payload);
     }
     
     /**
@@ -44,9 +44,11 @@ class Webhook extends AbstractEndpoint
             $data['config'] = $config;
         }
         
-        $mutation = new Mutation('create_webhook', $data, ['id', 'board_id']);
+        $payload = new Payload('mutation', [], [
+            new Payload('create_webhook', $data, ['id', 'board_id'])
+        ]);
         
-        return $this->client->request($mutation);
+        return $this->client->request($payload);
     }
     
     /**
@@ -56,8 +58,10 @@ class Webhook extends AbstractEndpoint
      */
     public function delete(int $id): array
     {
-        $mutation = new Mutation('delete_webhook', ['id' => $id], ['id', 'board_id']);
+        $payload = new Payload('mutation', [], [
+            new Payload('delete_webhook', ['id' => $id], ['id', 'board_id'])
+        ]);
         
-        return $this->client->request($mutation);
+        return $this->client->request($payload);
     }
 }

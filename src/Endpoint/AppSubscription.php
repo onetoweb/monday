@@ -2,7 +2,7 @@
 
 namespace Onetoweb\Monday\Endpoint;
 
-use Onetoweb\Monday\Payload\Query;
+use Onetoweb\Monday\Payload\Payload;
 
 /**
  * App Subscription Endpoint.
@@ -16,10 +16,10 @@ class AppSubscription extends AbstractEndpoint
      */
     public function read(array $fields = []): array
     {
-        $query = new Query('query', [], [
-            new Query('app_subscription', [], $fields)
+        $payload = new Payload('query', [], [
+            new Payload('app_subscription', [], $fields)
         ]);
         
-        return $this->client->request($query);
+        return $this->client->request($payload);
     }
 }

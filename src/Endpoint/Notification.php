@@ -2,7 +2,7 @@
 
 namespace Onetoweb\Monday\Endpoint;
 
-use Onetoweb\Monday\Payload\Mutation;
+use Onetoweb\Monday\Payload\Payload;
 
 /**
  * Notification Endpoint.
@@ -19,13 +19,17 @@ class Notification extends AbstractEndpoint
      */
     public function create(int $userId, int $targetId, string $text, string $type): array
     {
-        $mutation = new Mutation('create_notification', [
-            'user_id'=> $userId,
-            'target_id' => $targetId,
-            'text' => $text,
-            'target_type' => $type,
-        ], ['text']);
+        $payload = new Payload('mutation', [], [
+            new Payload('create_notification', [
+                'user_id'=> $userId,
+                'target_id' => $targetId,
+                'text' => $text,
+                'target_type' => $type,
+            ], [
+                'text'
+            ])
+        ]);
         
-        return $this->client->request($mutation);
+        return $this->client->request($payload);
     }
 }

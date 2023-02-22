@@ -7,10 +7,4 @@ use Stringable;
 /**
  * Payload Interface.
  */
-interface PayloadInterface extends Stringable
-{
-    /**
-     * @return void
-     */
-    public function buildPayload(): void;
-}
+interface PayloadInterface extends Stringable {}

@@ -9,3 +9,8 @@
 - Added workspace endpoint
 - Added webhook endpoint
 - Added webhook helper class to acknowledge webhook challenge
+
+## [1.1.0] - 2023-02-22
+
+- Refactored query and mutation payload into a single payload class
+- Client activityLogs endpoint changed to activityLog

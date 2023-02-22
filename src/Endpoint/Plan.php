@@ -2,7 +2,7 @@
 
 namespace Onetoweb\Monday\Endpoint;
 
-use Onetoweb\Monday\Payload\Query;
+use Onetoweb\Monday\Payload\Payload;
 
 /**
  * Plan Endpoint.
@@ -16,12 +16,12 @@ class Plan extends AbstractEndpoint
      */
     public function read(array $fields = []): array
     {
-        $query = new Query('query', [], [
-            new Query('account', [], [
-                new Query('plan', [], $fields)
+        $payload = new Payload('query', [], [
+            new Payload('account', [], [
+                new Payload('plan', [], $fields)
             ])
         ]);
         
-        return $this->client->request($query);
+        return $this->client->request($payload);
     }
 }

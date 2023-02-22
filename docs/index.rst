@@ -4,7 +4,7 @@
 Basic Usage
 ===========
 
-Setup client
+Setup client:
 
 .. code-block:: php
     
@@ -17,6 +17,40 @@ Setup client
     
     // setup client
     $client = new MondayClient($apiKey);
+
+You can fetch data by building a query payload:
+
+.. code-block:: php
+    
+    // example selecting boards, items, subitems and updates
+    $payload = new Payload('query', [], [
+        new Payload('boards', ['limit' => 5, 'page' => 0], ['id', 'name',
+            new Payload('items', ['limit' => 3], ['id', 'name',
+                new Payload('subitems', [], ['id', 'name',
+                    new Payload('updates', [], ['body'])
+                ])
+            ])
+        ])
+    ]);
+    
+    $result = $client->request($payload);
+
+You can manipulate data by building a mutation payload: 
+
+.. code-block:: php
+    
+    // create board
+    $payload = new Payload('mutation', [], [
+        new Payload('create_board', [
+            'board_name' => 'new board created via api',
+            'board_kind' => 'public',
+            'description' => 'board description'
+        ], ['id'])
+    ]);
+    
+    $result = $client->request($payload);
+
+Or you can use one of the built in endpoints see examples below:
 
 
 ========

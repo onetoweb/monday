@@ -16,11 +16,11 @@ Test complexity
 
 .. code-block:: php
     
-    use Onetoweb\Monday\Payload\Query;
+    use Onetoweb\Monday\Payload\Payload;
     
-    // query complexity you want to test
-    $query = new Query('boards', [], [
-        new Query('items', [], ['id', 'name'])
+    // payload complexity you want to test
+    $payload = new Payload('boards', [], [
+        new Payload('items', [], ['id', 'name'])
     ]);
     
     $result = $client->complexity->test([
@@ -29,7 +29,7 @@ Test complexity
         'before',
         'after',
         'reset_in_x_seconds'
-    ], $query);
+    ], $payload);
 
 
 `Back to top <#top>`_

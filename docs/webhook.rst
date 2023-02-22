@@ -31,7 +31,7 @@ Read webhooks
 Create webhook
 ``````````````
 
-Before you create a webhook you must acknowledge the webhook challenge
+Before you create a webhook you must setup to acknowledge the webhook challenge
 
 .. code-block:: php
     

@@ -2,8 +2,7 @@
 
 namespace Onetoweb\Monday\Endpoint;
 
-use Onetoweb\Monday\Payload\Query;
-use Onetoweb\Monday\Payload\PayloadInterface;
+use Onetoweb\Monday\Payload\{Payload, PayloadInterface};
 
 /**
  * Complexity Endpoint.
@@ -16,13 +15,13 @@ class Complexity extends AbstractEndpoint
      * 
      * @return array
      */
-    public function test(array $fields, PayloadInterface $payload): array
+    public function test(array $fields, PayloadInterface $testPayload): array
     {
-        $query = new Query('query', [], [
-            new Query('complexity', [], $fields),
-            $payload
+        $payload = new Payload('query', [], [
+            new Payload('complexity', [], $fields),
+            $testPayload
         ]);
         
-        return $this->client->request($query);
+        return $this->client->request($payload);
     }
 }

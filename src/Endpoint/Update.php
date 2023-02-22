@@ -2,7 +2,7 @@
 
 namespace Onetoweb\Monday\Endpoint;
 
-use Onetoweb\Monday\Payload\Query;
+use Onetoweb\Monday\Payload\Payload;
 
 /**
  * Update Endpoint.
@@ -17,15 +17,15 @@ class Update extends AbstractEndpoint
      */
     public function read(array $fields = [], array $arguments = []): array
     {
-        $fields[] = new Query('creator', [], [
+        $fields[] = new Payload('creator', [], [
             'name',
             'id'
         ]);
         
-        $query = new Query('query', [], [
-            new Query('updates', $arguments, $fields),
+        $payload = new Payload('query', [], [
+            new Payload('updates', $arguments, $fields),
         ]);
         
-        return $this->client->request($query);
+        return $this->client->request($payload);
     }
 }

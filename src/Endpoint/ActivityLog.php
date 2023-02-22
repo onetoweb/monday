@@ -2,7 +2,7 @@
 
 namespace Onetoweb\Monday\Endpoint;
 
-use Onetoweb\Monday\Payload\Query;
+use Onetoweb\Monday\Payload\Payload;
 
 /**
  * Activity Log Endpoint.
@@ -18,12 +18,12 @@ class ActivityLog extends AbstractEndpoint
      */
     public function read(array $fields = [], array $boardArguments = [], array $activityArguments = []): array
     {
-        $query = new Query('query', [], [
-            new Query('boards', $boardArguments, [
-                new Query('activity_logs ', $activityArguments, $fields)
+        $payload = new Payload('query', [], [
+            new Payload('boards', $boardArguments, [
+                new Payload('activity_logs ', $activityArguments, $fields)
             ])
         ]);
         
-        return $this->client->request($query);
+        return $this->client->request($payload);
     }
 }

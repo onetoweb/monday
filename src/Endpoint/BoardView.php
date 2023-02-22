@@ -2,7 +2,7 @@
 
 namespace Onetoweb\Monday\Endpoint;
 
-use Onetoweb\Monday\Payload\Query;
+use Onetoweb\Monday\Payload\Payload;
 
 /**
  * Board View Endpoint.
@@ -17,12 +17,12 @@ class BoardView extends AbstractEndpoint
      */
     public function read(array $fields = [], array $arguments = []): array
     {
-        $query = new Query('query', [], [
-            new Query('boards', $arguments, [
-                new Query('views', [], $fields)
+        $payload = new Payload('query', [], [
+            new Payload('boards', $arguments, [
+                new Payload('views', [], $fields)
             ])
         ]);
         
-        return $this->client->request($query);
+        return $this->client->request($payload);
     }
 }

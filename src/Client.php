@@ -2,8 +2,9 @@
 
 namespace Onetoweb\Monday;
 
-use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Client as GuzzleCLient;
+use GuzzleHttp\RequestOptions;
+use GuzzleHttp\Psr7\Utils;
 use Onetoweb\Monday\Payload\PayloadInterface;
 use Onetoweb\Monday\Endpoint;
 
