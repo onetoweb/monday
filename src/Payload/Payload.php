@@ -33,7 +33,7 @@ class Payload implements PayloadInterface
     /**
      * @param string $name
      * @param array $arguments = []
-     * @param array array $items = []
+     * @param array $items = []
      */
     public function __construct(string $name, array $arguments = [], array $items = [])
     {
