@@ -32,7 +32,6 @@ class File extends AbstractEndpoint
      */
     public function addToUpdate(string $filepath, int $updateId): array
     {
-        // build payload
         $payload = new Payload('mutation', ['$file' => 'File!'], [
             new Payload('add_file_to_update', [
                 'file' => '$file',
@@ -52,7 +51,6 @@ class File extends AbstractEndpoint
      */
     public function addToColumn(string $filepath, int $itemId, string $columnId): array
     {
-        // build payload
         $payload = new Payload('mutation', ['$file' => 'File!'], [
             new Payload('add_file_to_column', [
                 'file' => '$file',
