@@ -24,11 +24,11 @@ class Workspace extends AbstractEndpoint
     }
     
     /**
-     * @param array $data = []
+     * @param array $data
      * 
      * @return array
      */
-    public function create(array $data = []): array
+    public function create(array $data): array
     {
         $payload = new Payload('mutation', [], [
             new Payload('create_workspace', $data, ['id'])
