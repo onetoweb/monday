@@ -18,3 +18,6 @@
 ## [1.1.1] - 2023-02-23
 - Added create method to update endpoint
 - Added delete method to update endpoint
+- Added upload request function to client
+- Added addToUpdate method to file endpoint
+- Added addToColumn method to file endpoint

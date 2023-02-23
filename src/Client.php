@@ -17,6 +17,7 @@ class Client
      * Base Url.
      */
     const BASE_URL = 'https://api.monday.com/v2';
+    const BASE_FILE_URL = 'https://api.monday.com/v2/file';
     
     /**
      * Methods.
@@ -96,6 +97,48 @@ class Client
         $contents = $response->getBody()->getContents();
         
         // decode json 
+        $json = json_decode($contents, true);
+        
+        return $json;
+    }
+    
+    /**
+     * @param string $filepath
+     * @param PayloadInterface $payload
+     * 
+     * @return array
+     */
+    public function uploadRequest(string $filepath, PayloadInterface $payload): array
+    {
+        // build options
+        $options = [
+            RequestOptions::HTTP_ERRORS => false,
+            RequestOptions::HEADERS => [
+                'Authorization' => $this->apiKey
+            ],
+            RequestOptions::MULTIPART => [
+                [
+                    'name' => 'query',
+                    'contents' => (string) $payload,
+                ], [
+                    'name' => 'map',
+                    'contents' => json_encode([
+                        'image' => 'variables.file'
+                    ])
+                ], [
+                    'name' => 'image',
+                    'contents' => Utils::tryFopen($filepath, 'r')
+                ]
+            ],
+        ];
+        
+        // make request
+        $response = (new GuzzleCLient())->request(self::METHOD_POST, self::BASE_FILE_URL, $options);
+        
+        // get contents
+        $contents = $response->getBody()->getContents();
+        
+        // decode json
         $json = json_decode($contents, true);
         
         return $json;
