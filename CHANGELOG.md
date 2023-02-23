@@ -14,3 +14,7 @@
 
 - Refactored query and mutation payload into a single payload class
 - Client activityLogs endpoint changed to activityLog
+
+## [1.1.1] - 2023-02-23
+- Added create method to update endpoint
+- Added delete method to update endpoint

@@ -59,7 +59,7 @@ Add users to workspace
     
     $workspaceId = 123456789;
     $userIds = [123456789, 123456789];
-    $kind = 'subscriber'; // subscriber or owner (optional)
+    $kind = 'subscriber'; // (optional) subscriber or owner
     $result = $client->workspace->addUsers($workspaceId, $userIds, $kind);
 
 

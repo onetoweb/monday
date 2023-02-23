@@ -47,7 +47,7 @@ Create the webhook
     $boardId = 123456789;
     $url = 'https://example.com/webhook.php';
     $event = 'change_specific_column_value';
-    $config = ['columnId' => 'status']; // optional only required for certain events
+    $config = ['columnId' => 'status']; // (optional) only required for certain events
     $result = $client->webhook->create($boardId, $url, $event, $config);
 
 
