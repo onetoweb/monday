@@ -78,7 +78,7 @@ class Board extends AbstractEndpoint
     
     /**
      * @param int $id
-     *
+     * 
      * @return array
      */
     public function archive(int $id): array
@@ -95,9 +95,27 @@ class Board extends AbstractEndpoint
     }
     
     /**
+     * @param array $data
+     * 
+     * @return array
+     */
+    public function duplicate(array $data): array {
+        
+        $payload = new Payload('mutation', [], [
+            new Payload('duplicate_board', $data, [
+                new Payload('board', [], [
+                    'id'
+                ])
+            ])
+        ]);
+        
+        return $this->client->request($payload);
+    }
+    
+    /**
      * @param int $id
      * @param array $teamIds = []
-     *
+     * 
      * @return array
      */
     public function addTeams(int $id, array $teamIds = []): array

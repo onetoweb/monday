@@ -4,20 +4,29 @@
 
 - Initial release
 
+
 ## [1.0.1] - 2023-02-21
 
 - Added workspace endpoint
 - Added webhook endpoint
 - Added webhook helper class to acknowledge webhook challenge
 
+
 ## [1.1.0] - 2023-02-22
 
 - Refactored query and mutation payload into a single payload class
 - Client activityLogs endpoint changed to activityLog
 
+
 ## [1.1.1] - 2023-02-23
+
 - Added create method to update endpoint
 - Added delete method to update endpoint
 - Added upload request function to client
 - Added addToUpdate method to file endpoint
 - Added addToColumn method to file endpoint
+
+
+## [1.1.2] - 2023-02-23
+
+- Added duplicate method to board endpoint

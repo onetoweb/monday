@@ -64,6 +64,8 @@ class Payload implements PayloadInterface
                     $this->payload .= sprintf('%s: "%s"', $key, addslashes(json_encode($value)));
                 } elseif ($value instanceof DateTime) {
                     $this->payload .= sprintf('%s: "%s"', $key, Utils::formatFromDateTime($value));
+                } elseif (is_bool($value)) {
+                    $this->payload .= sprintf('%s: %s', $key, var_export($value, true));
                 } elseif (filter_var($value, FILTER_VALIDATE_INT) or !str_contains($value, ' ')) {
                     $this->payload .= sprintf('%s: %s', $key, $value);
                 } else {

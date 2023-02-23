@@ -57,6 +57,22 @@ Update board field
     $result = $client->board->update($boardId, $field, $newValue);
 
 
+Duplicate board
+```````````````
+
+.. code-block:: php
+    
+    $result = $client->board->duplicate([
+        'board_id' => 123456789,
+        'duplicate_type' => 'duplicate_board_with_pulses_and_updates',
+        // (optional) parameters
+        'board_name' => 'Board duplicate',
+        'workspace_id' => 123456789,
+        'folder_id' => 123456789,
+        'keep_subscribers' => true
+    ]);
+
+
 Archive board
 `````````````
 
