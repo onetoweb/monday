@@ -4,6 +4,7 @@
     "keywords": [
         "api",
         "php",
+        "graphql",
         "monday"
     ],
     "type": "library",

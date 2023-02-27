@@ -44,3 +44,12 @@
 - Added create method to documentBlock endpoint
 - Added update method to documentBlock endpoint
 - Added delete method to documentBlock endpoint
+
+
+## [1.1.4] - 2023-02-27
+
+- Added create method to group endpoint
+- Added update method to group endpoint
+- Added duplicate method to group endpoint
+- Added archive method to group endpoint
+- Added delete method to group endpoint
