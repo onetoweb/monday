@@ -27,6 +27,13 @@
 - Added addToColumn method to file endpoint
 
 
-## [1.1.2] - 2023-02-23
+## [1.1.2] - 2023-02-27
 
 - Added duplicate method to board endpoint
+- Added create method to column endpoint
+- Added updateSimpleValue method to column endpoint
+- Added updateValue method to column endpoint
+- Added updateMultipleValues method to column endpoint
+- Added updateTitle method to column endpoint
+- Added updateMetadata method to column endpoint
+- Added delete method to column endpoint

@@ -13,17 +13,17 @@ class Payload implements PayloadInterface
     /**
      * @var string
      */
-    protected $name;
+    private $name;
     
     /**
      * @var array
      */
-    protected $arguments;
+    private $arguments;
     
     /**
      * @var array
      */
-    protected $items;
+    private $items;
     
     /**
      * @var string

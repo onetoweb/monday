@@ -35,7 +35,7 @@ You can fetch data by building a query payload:
     
     $result = $client->request($payload);
 
-You can manipulate data by building a mutation payload: 
+You can manipulate data by building a mutation payload:
 
 .. code-block:: php
     

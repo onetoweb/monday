@@ -116,6 +116,7 @@ class Client
             RequestOptions::HEADERS => [
                 'Authorization' => $this->apiKey
             ],
+            // add multipart content
             RequestOptions::MULTIPART => [
                 [
                     'name' => 'query',
