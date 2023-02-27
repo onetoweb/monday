@@ -16,13 +16,13 @@ class Client
     /**
      * Base Url.
      */
-    const BASE_URL = 'https://api.monday.com/v2';
-    const BASE_FILE_URL = 'https://api.monday.com/v2/file';
+    public const BASE_URL = 'https://api.monday.com/v2';
+    public const BASE_FILE_URL = self::BASE_URL . '/file';
     
     /**
      * Methods.
      */
-    const METHOD_POST = 'POST';
+    public const METHOD_POST = 'POST';
     
     /**
      * @var string

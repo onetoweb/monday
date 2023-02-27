@@ -37,3 +37,10 @@
 - Added updateTitle method to column endpoint
 - Added updateMetadata method to column endpoint
 - Added delete method to column endpoint
+
+
+## [1.1.3] - 2023-02-27
+
+- Added create method to documentBlock endpoint
+- Added update method to documentBlock endpoint
+- Added delete method to documentBlock endpoint

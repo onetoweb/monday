@@ -23,6 +23,7 @@ Read documents
         'object_id',
         'doc_folder_id',
         'workspace_id',
+        'settings',
         'created_at'
     ], [
         // arguments for selecting docs

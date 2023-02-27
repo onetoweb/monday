@@ -11,6 +11,7 @@ Setup client:
     require 'vendor/autoload.php';
     
     use Onetoweb\Monday\Client as MondayClient;
+    use Onetoweb\Monday\Payload\Payload;
     
     // param
     $apiKey = 'api_key';

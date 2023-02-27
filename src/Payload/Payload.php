@@ -66,10 +66,12 @@ class Payload implements PayloadInterface
                     $this->payload .= sprintf('%s: "%s"', $key, Utils::formatFromDateTime($value));
                 } elseif (is_bool($value)) {
                     $this->payload .= sprintf('%s: %s', $key, var_export($value, true));
+                } elseif (preg_match('/^\{?[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}\}?$/', $value)) {
+                    $this->payload .= sprintf('%s: "%s"', $key, $value);
                 } elseif (filter_var($value, FILTER_VALIDATE_INT) or !str_contains($value, ' ')) {
                     $this->payload .= sprintf('%s: %s', $key, $value);
                 } else {
-                    $this->payload .= sprintf('%s: "%s" ', $key, $value);
+                    $this->payload .= sprintf('%s: "%s"', $key, $value);
                 }
                 
                 $i++;
