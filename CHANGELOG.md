@@ -46,10 +46,17 @@
 - Added delete method to documentBlock endpoint
 
 
-## [1.1.4] - 2023-02-27
+## [1.1.4] - 2023-02-28
 
 - Added create method to group endpoint
 - Added update method to group endpoint
 - Added duplicate method to group endpoint
 - Added archive method to group endpoint
 - Added delete method to group endpoint
+- Added create method to item endpoint
+- Added createSubitem method to item endpoint
+- Added clearUpdates method to item endpoint
+- Added moveToGroup method to item endpoint
+- Added archive method to item endpoint
+- Added delete method to item endpoint
+- Added duplicate method to item endpoint
