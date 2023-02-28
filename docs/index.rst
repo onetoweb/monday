@@ -11,7 +11,6 @@ Setup client:
     require 'vendor/autoload.php';
     
     use Onetoweb\Monday\Client as MondayClient;
-    use Onetoweb\Monday\Payload\Payload;
     
     // param
     $apiKey = 'api_key';
@@ -19,44 +18,12 @@ Setup client:
     // setup client
     $client = new MondayClient($apiKey);
 
-You can fetch data by building a query payload:
 
-.. code-block:: php
-    
-    // example selecting boards, items, subitems and updates
-    $payload = new Payload('query', [], [
-        new Payload('boards', ['limit' => 5, 'page' => 0], ['id', 'name',
-            new Payload('items', ['limit' => 3], ['id', 'name',
-                new Payload('subitems', [], ['id', 'name',
-                    new Payload('updates', [], ['body'])
-                ])
-            ])
-        ])
-    ]);
-    
-    $result = $client->request($payload);
+=========
+Endpoints
+=========
 
-You can manipulate data by building a mutation payload:
-
-.. code-block:: php
-    
-    // create board
-    $payload = new Payload('mutation', [], [
-        new Payload('create_board', [
-            'board_name' => 'new board created via api',
-            'board_kind' => 'public',
-            'description' => 'board description'
-        ], ['id'])
-    ]);
-    
-    $result = $client->request($payload);
-
-Or you can use one of the built in endpoints see examples below:
-
-
-========
-Examples
-========
+You can use one of the built in endpoints see examples below:
 
 * `Accounts <account.rst>`_
 * `Activity logs <activity_log.rst>`_
@@ -81,3 +48,44 @@ Examples
 * `Users <user.rst>`_
 * `Webhooks <webhook.rst>`_
 * `Workspaces <workspace.rst>`_
+
+
+======================
+Build your own payload
+======================
+
+You can fetch data by building a query payload:
+
+.. code-block:: php
+    
+    use Onetoweb\Monday\Payload\Payload;
+    
+    // example selecting boards, items, subitems and updates
+    $payload = new Payload('query', [], [
+        new Payload('boards', ['limit' => 5, 'page' => 0], ['id', 'name',
+            new Payload('items', ['limit' => 3], ['id', 'name',
+                new Payload('subitems', [], ['id', 'name',
+                    new Payload('updates', [], ['body'])
+                ])
+            ])
+        ])
+    ]);
+    
+    $result = $client->request($payload);
+
+You can manipulate data by building a mutation payload:
+
+.. code-block:: php
+    
+    use Onetoweb\Monday\Payload\Payload;
+    
+    // create board
+    $payload = new Payload('mutation', [], [
+        new Payload('create_board', [
+            'board_name' => 'new board created via api',
+            'board_kind' => 'public',
+            'description' => 'board description'
+        ], ['id'])
+    ]);
+    
+    $result = $client->request($payload);
