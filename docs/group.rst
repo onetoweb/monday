@@ -18,6 +18,7 @@ Read groups
     
     $result = $client->group->read([
         // group fields to select
+        'id',
         'title',
         'color',
         'position'
