@@ -60,3 +60,9 @@
 - Added archive method to item endpoint
 - Added delete method to item endpoint
 - Added duplicate method to item endpoint
+
+
+## [1.1.5] - 2023-02-28
+
+- Added create method to subitem endpoint
+

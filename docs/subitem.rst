@@ -29,4 +29,16 @@ Get subitems
     ]);
 
 
+Create subitems
+```````````````
+
+.. code-block:: php
+    
+    $parentItemId = 123456789;
+    $name = 'new subitem';
+    $values = ['text' => 'foo bar']; // (optional)
+    $createLabels = true; // (optional)
+    $result = $client->item->createSubitem($parentItemId, $name, $values, $createLabels);
+
+
 `Back to top <#top>`_

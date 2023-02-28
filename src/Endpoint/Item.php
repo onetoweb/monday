@@ -67,23 +67,7 @@ class Item extends AbstractEndpoint
      */
     public function createSubitem(int $parentItemId, string $name, array $values = null, bool $createLabels = true): array
     {
-        $data = [
-            'item_name' => $name,
-            'parent_item_id' => $parentItemId,
-        ];
-        
-        if ($values !== null) {
-            $data['column_values'] = $values;
-            $data['create_labels_if_missing'] = $createLabels;
-        }
-        
-        $payload = new Payload('mutation', [], [
-            new Payload('create_subitem', $data, [
-                'id'
-            ])
-        ]);
-        
-        return $this->client->request($payload);
+        return $this->client->subitem->create($parentItemId, $name, $values, $createLabels);
     }
     
     /**
