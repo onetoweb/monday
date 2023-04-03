@@ -19,7 +19,6 @@
     "require": {
         "php": ">=7.1.0",
         "guzzlehttp/guzzle" : "^6.0 || ^7.0",
-        "symfony/polyfill-php80": "^1.27",
         "symfony/polyfill-php81": "^1.27",
         "symfony/http-foundation": "^5.4"
     },
