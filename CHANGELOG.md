@@ -66,3 +66,8 @@
 
 - Added create method to subitem endpoint
 
+
+## [1.1.6] - 2023-04-03
+
+- Added select arguments for items to: item endpoint read method
+

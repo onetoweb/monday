@@ -26,7 +26,12 @@ Read items
         'email',
         'relative_link'
     ], [
-        // arguments for selecting items
+        // arguments for selecting board(s)
+        'limit' => 5,
+        'page' => 1,
+        'ids' => [123456789]
+    ], [
+        // arguments for selecting items under boards
         'limit' => 5,
         'page' => 1,
         'ids' => [123456789]
