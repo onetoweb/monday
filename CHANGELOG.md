@@ -71,3 +71,7 @@
 
 - Added select arguments for items to: item endpoint read method
 
+
+## [1.1.7] - 2023-04-03
+
+- Added readExtended method to columnValue endpoint
