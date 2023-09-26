@@ -10,9 +10,9 @@ composer require onetoweb/monday
 
 See [Documentation](docs/index.rst)
 
-## Api Documention
+## Api Documentation
 
-See [Api Documention](https://developer.monday.com/api-reference/docs)
+See [Api Documentation](https://developer.monday.com/api-reference/docs)
 
 ## Change Log
 
