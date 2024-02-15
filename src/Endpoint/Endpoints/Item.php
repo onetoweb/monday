@@ -21,7 +21,9 @@ class Item extends AbstractEndpoint
     {
         $payload = new Payload('query', [], [
             new Payload('boards', $boardArguments, [
-                new Payload('items', $itemArguments, $fields)
+                new Payload('items_page', $itemArguments, [
+                    new Payload('items', [], $fields)
+                ])
             ])
         ]);
         

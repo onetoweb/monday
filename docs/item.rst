@@ -32,9 +32,7 @@ Read items
         'ids' => [123456789]
     ], [
         // arguments for selecting items under boards
-        'limit' => 5,
-        'page' => 1,
-        'ids' => [123456789]
+        'limit' => 5
     ]);
 
 
