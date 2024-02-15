@@ -21,8 +21,10 @@ class Subitem extends AbstractEndpoint
     {
         $payload = new Payload('query', [], [
             new Payload('boards', $boardArguments, [
-                new Payload('items', $itemArguments, [
-                    new Payload('subitems ', [], $fields)
+                new Payload('items_page', $itemArguments, [
+                    new Payload('items', [], [
+                        new Payload('subitems ', [], $fields)
+                    ])
                 ])
             ])
         ]);
