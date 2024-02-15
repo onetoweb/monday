@@ -21,32 +21,14 @@ class ColumnValue extends AbstractEndpoint
     {
         $payload = new Payload('query', [], [
             new Payload('boards', $boardArguments, [
-                new Payload('items', $itemArguments, [
-                    new Payload('column_values', [], $fields)
+                new Payload('items_page', $itemArguments, [
+                    new Payload('items', [], [
+                        new Payload('column_values', [], [
+                            new Payload('column', [], $fields)
+                        ])
+                    ])
                 ])
             ])
-        ]);
-        
-        return $this->client->request($payload);
-    }
-    
-    /**
-     * @param array $boardFields = []
-     * @param array $itemFields = []
-     * @param array $columnValueFields = []
-     * @param array $boardArguments = []
-     * @param array $itemArguments = []
-     * @param array $columnValueArguments = []
-     *
-     * @return array
-     */
-    public function readExtended(array $boardFields = [], array $itemFields = [], array $columnValueFields = [], array $boardArguments = [], array $itemArguments = [], array $columnValueArguments = []): array
-    {
-        $itemFields[] = new Payload('column_values', $columnValueArguments, $columnValueFields);
-        $boardFields[] = new Payload('items', $itemArguments, $itemFields);
-        
-        $payload = new Payload('query', [], [
-            new Payload('boards', $boardArguments, $boardFields)
         ]);
         
         return $this->client->request($payload);
