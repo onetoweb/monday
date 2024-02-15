@@ -1,13 +1,14 @@
 <?php
 
-namespace Onetoweb\Monday\Endpoint;
+namespace Onetoweb\Monday\Endpoint\Endpoints;
 
+use Onetoweb\Monday\Endpoint\AbstractEndpoint;
 use Onetoweb\Monday\Payload\Payload;
 
 /**
- * User Endpoint.
+ * Team Endpoint.
  */
-class User extends AbstractEndpoint
+class Team extends AbstractEndpoint
 {
     /**
      * @param array $fields = []
@@ -18,7 +19,7 @@ class User extends AbstractEndpoint
     public function read(array $fields = [], array $arguments = []): array
     {
         $payload = new Payload('query', [], [
-            new Payload('users', $arguments, $fields)
+            new Payload('teams', $arguments, $fields)
         ]);
         
         return $this->client->request($payload);

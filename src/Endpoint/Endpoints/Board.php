@@ -1,23 +1,25 @@
 <?php
 
-namespace Onetoweb\Monday\Endpoint;
+namespace Onetoweb\Monday\Endpoint\Endpoints;
 
+use Onetoweb\Monday\Endpoint\AbstractEndpoint;
 use Onetoweb\Monday\Payload\Payload;
 
 /**
- * Workspace Endpoint.
+ * Board Endpoint.
  */
-class Workspace extends AbstractEndpoint
+class Board extends AbstractEndpoint
 {
     /**
      * @param array $fields = []
+     * @param array $arguments = []
      * 
      * @return array
      */
-    public function read(array $fields = []): array
+    public function read(array $fields = [], array $arguments = []): array
     {
         $payload = new Payload('query', [], [
-            new Payload('workspaces', [], $fields)
+            new Payload('boards', $arguments, $fields)
         ]);
         
         return $this->client->request($payload);
@@ -31,7 +33,27 @@ class Workspace extends AbstractEndpoint
     public function create(array $data): array
     {
         $payload = new Payload('mutation', [], [
-            new Payload('create_workspace', $data, ['id'])
+            new Payload('create_board', $data, ['id'])
+        ]);
+        
+        return $this->client->request($payload);
+    }
+    
+    /**
+     * @param int $id
+     * @param string $field
+     * @param string $newValue
+     * 
+     * @return array
+     */
+    public function update(int $id, string $field, string $newValue): array
+    {
+        $payload = new Payload('mutation', [], [
+            new Payload('update_board', [
+                'board_id' => $id,
+                'board_attribute' => $field,
+                'new_value' => $newValue
+            ])
         ]);
         
         return $this->client->request($payload);
@@ -45,8 +67,8 @@ class Workspace extends AbstractEndpoint
     public function delete(int $id): array
     {
         $payload = new Payload('mutation', [], [
-            new Payload('delete_workspace', [
-                'workspace_id' => $id,
+            new Payload('delete_board', [
+                'board_id' => $id
             ], [
                 'id'
             ])
@@ -57,41 +79,14 @@ class Workspace extends AbstractEndpoint
     
     /**
      * @param int $id
-     * @param array $userIds
-     * @param string $kind = null
      * 
      * @return array
      */
-    public function addUsers(int $id, array $userIds, string $kind = null): array
-    {
-        $data = [
-            'workspace_id' => $id,
-            'user_ids' => $userIds
-        ];
-        
-        if ($kind !== null) {
-            $data['kind'] = $kind;
-        }
-        
-        $payload = new Payload('mutation', [], [
-            new Payload('add_users_to_workspace', $data, ['id'])
-        ]);
-        
-        return $this->client->request($payload);
-    }
-    
-    /**
-     * @param int $id
-     * @param array $userIds
-     * 
-     * @return array
-     */
-    public function removeUsers(int $id, array $userIds): array
+    public function archive(int $id): array
     {
         $payload = new Payload('mutation', [], [
-            new Payload('delete_users_from_workspace', [
-                'workspace_id' => $id,
-                'user_ids' => $userIds
+            new Payload('archive_board', [
+                'board_id' => $id
             ], [
                 'id'
             ])
@@ -101,18 +96,18 @@ class Workspace extends AbstractEndpoint
     }
     
     /**
-     * @param int $id
-     * @param array $teamIds
+     * @param array $data
      * 
      * @return array
      */
-    public function addTeams(int $id, array $teamIds): array
-    {
+    public function duplicate(array $data): array {
+        
         $payload = new Payload('mutation', [], [
-            new Payload('add_teams_to_workspace', [
-                'workspace_id' => $id,
-                'team_ids' => $teamIds
-            ], ['id'])
+            new Payload('duplicate_board', $data, [
+                new Payload('board', [], [
+                    'id'
+                ])
+            ])
         ]);
         
         return $this->client->request($payload);
@@ -120,17 +115,19 @@ class Workspace extends AbstractEndpoint
     
     /**
      * @param int $id
-     * @param array $teamIds
+     * @param array $teamIds = []
      * 
      * @return array
      */
-    public function removeTeams(int $id, array $teamIds): array
+    public function addTeams(int $id, array $teamIds = []): array
     {
         $payload = new Payload('mutation', [], [
-            new Payload('delete_teams_from_workspace', [
-                'workspace_id' => $id,
+            new Payload('add_teams_to_board ', [
+                'board_id' => $id,
                 'team_ids' => $teamIds
-            ], ['id'])
+            ], [
+                'id'
+            ])
         ]);
         
         return $this->client->request($payload);

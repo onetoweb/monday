@@ -6,7 +6,7 @@ use GuzzleHttp\Client as GuzzleCLient;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Psr7\Utils;
 use Onetoweb\Monday\Payload\PayloadInterface;
-use Onetoweb\Monday\Endpoint;
+use Onetoweb\Monday\Endpoint\Endpoints;
 
 /**
  * Monday Api Client.
@@ -37,37 +37,17 @@ class Client
         $this->apiKey = $apiKey;
         
         // load endpoints
-        $this->loadEnpoints();
+        $this->loadEndpoints();
     }
     
     /**
      * @return void
      */
-    private function loadEnpoints(): void
+    private function loadEndpoints(): void
     {
-        $this->account = new Endpoint\Account($this);
-        $this->activityLog = new Endpoint\ActivityLog($this);
-        $this->appSubscription = new Endpoint\AppSubscription($this);
-        $this->board = new Endpoint\Board($this);
-        $this->boardView = new Endpoint\BoardView($this);
-        $this->column = new Endpoint\Column($this);
-        $this->columnValue = new Endpoint\ColumnValue($this);
-        $this->complexity = new Endpoint\Complexity($this);
-        $this->document = new Endpoint\Document($this);
-        $this->documentBlock = new Endpoint\DocumentBlock($this);
-        $this->file = new Endpoint\File($this);
-        $this->group = new Endpoint\Group($this);
-        $this->item = new Endpoint\Item($this);
-        $this->me = new Endpoint\Me($this);
-        $this->notification = new Endpoint\Notification($this);
-        $this->plan = new Endpoint\Plan($this);
-        $this->subitem = new Endpoint\Subitem($this);
-        $this->tag = new Endpoint\Tag($this);
-        $this->team = new Endpoint\Team($this);
-        $this->update = new Endpoint\Update($this);
-        $this->user = new Endpoint\User($this);
-        $this->webhook = new Endpoint\Webhook($this);
-        $this->workspace = new Endpoint\Workspace($this);
+        foreach (Endpoints::list() as $name => $class) {
+            $this->{$name} = new $class($this);
+        }
     }
     
     /**

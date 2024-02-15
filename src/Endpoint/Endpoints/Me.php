@@ -1,24 +1,24 @@
 <?php
 
-namespace Onetoweb\Monday\Endpoint;
+namespace Onetoweb\Monday\Endpoint\Endpoints;
 
+use Onetoweb\Monday\Endpoint\AbstractEndpoint;
 use Onetoweb\Monday\Payload\Payload;
 
 /**
- * Document Endpoint.
+ * Me Endpoint.
  */
-class Document extends AbstractEndpoint
+class Me extends AbstractEndpoint
 {
     /**
      * @param array $fields = []
-     * @param array $arguments = []
      * 
      * @return array
      */
-    public function read(array $fields = [], array $arguments = []): array
+    public function read(array $fields = []): array
     {
         $payload = new Payload('query', [], [
-            new Payload('docs', $arguments, $fields)
+            new Payload('me', [], $fields)
         ]);
         
         return $this->client->request($payload);

@@ -1,13 +1,14 @@
 <?php
 
-namespace Onetoweb\Monday\Endpoint;
+namespace Onetoweb\Monday\Endpoint\Endpoints;
 
+use Onetoweb\Monday\Endpoint\AbstractEndpoint;
 use Onetoweb\Monday\Payload\Payload;
 
 /**
- * Webhook Endpoint.
+ * Update Endpoint.
  */
-class Webhook extends AbstractEndpoint
+class Update extends AbstractEndpoint
 {
     /**
      * @param array $fields = []
@@ -17,35 +18,38 @@ class Webhook extends AbstractEndpoint
      */
     public function read(array $fields = [], array $arguments = []): array
     {
+        $fields[] = new Payload('creator', [], [
+            'name',
+            'id'
+        ]);
+        
         $payload = new Payload('query', [], [
-            new Payload('webhooks', $arguments, $fields)
+            new Payload('updates', $arguments, $fields),
         ]);
         
         return $this->client->request($payload);
     }
     
     /**
-     * @param int $boardId
-     * @param string $url
-     * @param string $event
-     * @param array $config = []
-     *
+     * @param string $body
+     * @param int $itemId
+     * @param int $parentId = null
+     * 
      * @return array
      */
-    public function create(int $boardId, string $url, string $event, array $config = []): array
+    public function create(string $body, int $itemId, int $parentId = null): array
     {
         $data = [
-            'board_id' => $boardId,
-            'url' => '"'.$url.'"',
-            'event' => $event,
+            'body' => $body,
+            'item_id' => $itemId
         ];
         
-        if (count($config) > 0) {
-            $data['config'] = $config;
+        if ($parentId !== null) {
+            $data['parent_id'] = $parentId;
         }
         
         $payload = new Payload('mutation', [], [
-            new Payload('create_webhook', $data, ['id', 'board_id'])
+            new Payload('create_update ', $data, ['id'])
         ]);
         
         return $this->client->request($payload);
@@ -59,7 +63,7 @@ class Webhook extends AbstractEndpoint
     public function delete(int $id): array
     {
         $payload = new Payload('mutation', [], [
-            new Payload('delete_webhook', ['id' => $id], ['id', 'board_id'])
+            new Payload('delete_update ', ['id' => $id], ['id'])
         ]);
         
         return $this->client->request($payload);
