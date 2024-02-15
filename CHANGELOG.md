@@ -75,3 +75,11 @@
 ## [1.1.7] - 2023-04-03
 
 - Added readExtended method to columnValue endpoint
+
+## [2.0.0] - 2024-02-15
+
+- restructure endpoints
+- add item page to item read
+- add item page to subitem read
+- add item page to columnValue read
+- remove readExtended method form columnValue endpoint
