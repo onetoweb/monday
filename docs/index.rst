@@ -63,9 +63,11 @@ You can fetch data by building a query payload:
     // example selecting boards, items, subitems and updates
     $payload = new Payload('query', [], [
         new Payload('boards', ['limit' => 5, 'page' => 0], ['id', 'name',
-            new Payload('items', ['limit' => 3], ['id', 'name',
-                new Payload('subitems', [], ['id', 'name',
-                    new Payload('updates', [], ['body'])
+            new Payload('items_page', ['limit' => 3], [
+                new Payload('items', [], ['id', 'name',
+                    new Payload('subitems', [], ['id', 'name',
+                        new Payload('updates', [], ['body'])
+                    ])
                 ])
             ])
         ])

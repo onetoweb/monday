@@ -7,7 +7,7 @@ use Onetoweb\Monday\Client;
 /**
  * Abstract Endpoint.
  */
-class AbstractEndpoint implements EndpointInterface
+abstract class AbstractEndpoint implements EndpointInterface
 {
     /**
      * @var Client

@@ -11,26 +11,35 @@ Column values
     :local:
 
 
-Read column values from board
-`````````````````````````````
+Read column values by item
+``````````````````````````
 
 .. code-block:: php
     
-    $result = $client->columnValue->read([
+    $result = $client->columnValue->readByItem([
         // column value fields to select
         'id',
-        'title',
-        'description',
         'type',
-        'value',
-        'text',
-        'additional_info'
+        'value'
+    ], [
+        // arguments for selecting items
+        'ids' => [123456789]
+    ]);
+
+
+Read column values by board
+```````````````````````````
+
+.. code-block:: php
+    
+    $result = $client->columnValue->readByBoard([
+        // column value fields to select
+        'id',
+        'type',
+        'value'
     ], [
         // arguments for selecting boards
         'ids' => [123456789]
-    ], [
-        // arguments for selecting items
-        'limit' => 50
     ]);
 
 

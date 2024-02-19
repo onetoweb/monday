@@ -78,8 +78,14 @@
 
 ## [2.0.0] - 2024-02-15
 
-- restructure endpoints
-- add item page to item read
-- add item page to subitem read
-- add item page to columnValue read
-- remove readExtended method form columnValue endpoint
+- Restructure endpoints
+- Add item page to item read
+- Add item page to subitem read
+- Add item page to columnValue read
+- Remove readExtended method from columnValue endpoint
+
+## [2.0.1] - 2024-02-19
+
+- Remove read method from columnValue endpoint
+- Added readByItem to columnValue endpoint
+- Added readByBoard to columnValue endpoint
