@@ -76,6 +76,7 @@
 
 - Added readExtended method to columnValue endpoint
 
+
 ## [2.0.0] - 2024-02-15
 
 - Restructure endpoints
@@ -83,6 +84,7 @@
 - Add item page to subitem read
 - Add item page to columnValue read
 - Remove readExtended method from columnValue endpoint
+
 
 ## [2.0.1] - 2024-02-19
 
