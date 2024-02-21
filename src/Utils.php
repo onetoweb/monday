@@ -28,4 +28,24 @@ final class Utils
     {
         return (new DateTime())->setTimestamp($timestamp / 10000000);
     }
+    
+    /**
+     * @param array $data
+     * 
+     * @return string|null
+     */
+    public static function findCursor(array $haystack): ?string
+    {
+        array_walk_recursive($haystack, function($value, $key) use (&$cursor) {
+            
+            if ($key === 'cursor') {
+                
+                $cursor = $value;
+                
+                return true;
+            }
+        });
+        
+        return $cursor;
+    }
 }

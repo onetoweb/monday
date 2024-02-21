@@ -17,11 +17,12 @@ class Item extends AbstractEndpoint
      * 
      * @return array
      */
-    public function read(array $fields = [], array $boardArguments = [], array $itemArguments = []): array
+    public function read(array $fields = [], array $boardArguments = [], array $itemPageArguments = []): array
     {
         $payload = new Payload('query', [], [
             new Payload('boards', $boardArguments, [
-                new Payload('items_page', $itemArguments, [
+                new Payload('items_page', $itemPageArguments, [
+                    'cursor',
                     new Payload('items', [], $fields)
                 ])
             ])

@@ -36,6 +36,44 @@ Read items
     ]);
 
 
+Read all items form a board
+```````````````````````````
+
+.. code-block:: php
+    
+    $cursor = null;
+    do {
+        
+        $result = $client->item->read([
+            
+            // item fields to select
+            'id',
+            'name',
+            'state',
+            'created_at',
+            'updated_at',
+            'email',
+            'relative_link'
+        ], [
+            
+            // arguments for selecting board(s)
+            'ids' => 123456789,
+            'cursor' => $cursor
+        ], [
+            
+            // arguments for selecting item under boards
+            'limit' => 500
+        ]);
+        
+        // find cursor in result
+        $cursor = \Onetoweb\Monday\Utils::findCursor($result);
+        
+        // contains item data
+        $result;
+    }
+    while ($cursor !== null);
+
+
 Create item
 ```````````
 

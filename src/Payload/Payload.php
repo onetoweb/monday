@@ -57,23 +57,25 @@ class Payload implements PayloadInterface
             $i = 0;
             foreach ($this->arguments as $key => $value) {
                 
-                // format value and add argument to payload
-                if (is_array($value) and array_is_list($value)) {
-                    $this->payload .= sprintf('%s: [%s]', $key, implode(', ', $value));
-                } elseif (is_array($value)) {
-                    $this->payload .= sprintf('%s: "%s"', $key, addslashes(json_encode($value)));
-                } elseif ($value instanceof DateTime) {
-                    $this->payload .= sprintf('%s: "%s"', $key, Utils::formatFromDateTime($value));
-                } elseif (is_bool($value)) {
-                    $this->payload .= sprintf('%s: %s', $key, var_export($value, true));
-                } elseif (preg_match('/^\{?[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}\}?$/', $value)) {
-                    $this->payload .= sprintf('%s: "%s"', $key, $value);
-                } elseif (filter_var($value, FILTER_VALIDATE_INT) or !str_contains($value, ' ')) {
-                    $this->payload .= sprintf('%s: %s', $key, $value);
-                } else {
-                    $this->payload .= sprintf('%s: "%s"', $key, $value);
+                if ($value !== null) {
+                    
+                    // format value and add argument to payload
+                    if (is_array($value) and array_is_list($value)) {
+                        $this->payload .= sprintf('%s: [%s]', $key, implode(', ', $value));
+                    } elseif (is_array($value)) {
+                        $this->payload .= sprintf('%s: "%s"', $key, stripslashes(json_encode($value)));
+                    } elseif ($value instanceof DateTime) {
+                        $this->payload .= sprintf('%s: "%s"', $key, Utils::formatFromDateTime($value));
+                    } elseif (is_bool($value)) {
+                        $this->payload .= sprintf('%s: %s', $key, var_export($value, true));
+                    } elseif (preg_match('/^\{?[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}\}?$/', $value)) {
+                        $this->payload .= sprintf('%s: "%s"', $key, $value);
+                    } elseif (filter_var($value, FILTER_VALIDATE_INT) or !str_contains($value, ' ') and $key != 'cursor') {
+                        $this->payload .= sprintf('%s: %s', $key, $value);
+                    } else {
+                        $this->payload .= sprintf('%s: "%s"', $key, $value);
+                    }
                 }
-                
                 $i++;
                 if ($i < count($this->arguments)) {
                     $this->payload .= ', ';

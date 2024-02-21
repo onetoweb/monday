@@ -64,6 +64,7 @@ You can fetch data by building a query payload:
     $payload = new Payload('query', [], [
         new Payload('boards', ['limit' => 5, 'page' => 0], ['id', 'name',
             new Payload('items_page', ['limit' => 3], [
+                'cursor', // contains cursor token to load the next item page
                 new Payload('items', [], ['id', 'name',
                     new Payload('subitems', [], ['id', 'name',
                         new Payload('updates', [], ['body'])

@@ -91,3 +91,8 @@
 - Remove read method from columnValue endpoint
 - Added readByItem to columnValue endpoint
 - Added readByBoard to columnValue endpoint
+
+
+## [2.0.2] - 2024-02-21
+
+- Add support for cursor token to item endpoint
