@@ -29,18 +29,21 @@ class ColumnValue extends AbstractEndpoint
     
     /**
      * @param array $fields = []
+     * @param array $itemFields = []
      * @param array $boardArguments = []
+     * @param array $itemPageArguments = []
      * 
      * @return array
      */
-    public function readByBoard(array $fields = [], array $boardArguments = []): array
+    public function readByBoard(array $fields = [], array $itemFields = [], array $boardArguments = [], array $itemPageArguments = []): array
     {
+        $itemFields[] = new Payload('column_values', [], $fields);
+        
         $payload = new Payload('query', [], [
             new Payload('boards', $boardArguments, [
-                new Payload('items_page', [], [
-                    new Payload('items', [], [
-                        new Payload('column_values', [], $fields)
-                    ])
+                new Payload('items_page', $itemPageArguments, [
+                    'cursor',
+                    new Payload('items', [], $itemFields)
                 ])
             ])
         ]);
