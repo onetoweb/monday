@@ -57,12 +57,12 @@ Read all items form a board
         ], [
             
             // arguments for selecting board(s)
-            'ids' => 123456789,
-            'cursor' => $cursor
+            'ids' => 123456789
         ], [
             
             // arguments for selecting item under boards
-            'limit' => 500
+            'limit' => 500,
+            'cursor' => $cursor
         ]);
         
         // find cursor in result
