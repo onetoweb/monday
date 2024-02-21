@@ -102,3 +102,7 @@
 
 - Add support for cursor token to columnValue endpoint
 
+
+## [2.0.4] - 2024-02-21
+
+- Add support for cursor token to subitem endpoint

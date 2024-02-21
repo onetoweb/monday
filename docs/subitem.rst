@@ -29,6 +29,36 @@ Get subitems
     ]);
 
 
+Get all subitems
+````````````````
+
+.. code-block:: php
+    
+    $cursor = null;
+    do {
+        
+        $result = $client->subitem->read([
+            // subitem fields to select
+            'id',
+            'name'
+        ], [
+            // arguments for selecting boards
+            'ids' => 123456789
+        ], [
+            // arguments for selecting items
+            'limit' => 5,
+            'cursor' => $cursor
+        ]);
+        
+        // find cursor in result
+        $cursor = \Onetoweb\Monday\Utils::findCursor($result);
+        
+        // result containset item and column values
+        $result;
+    }
+    while ($cursor !== null);
+
+
 Create subitems
 ```````````````
 

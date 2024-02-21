@@ -33,6 +33,7 @@ Read column values by board
 .. code-block:: php
     
     $result = $client->columnValue->readByBoard([
+        
         // column value fields to select
         'id',
         'type',
@@ -48,6 +49,7 @@ Read column values by board
         'email',
         'relative_link'
     ], [
+        
         // arguments for selecting boards
         'ids' => [123456789]
     ]);
