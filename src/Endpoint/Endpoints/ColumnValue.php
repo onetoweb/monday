@@ -4,6 +4,7 @@ namespace Onetoweb\Monday\Endpoint\Endpoints;
 
 use Onetoweb\Monday\Endpoint\AbstractEndpoint;
 use Onetoweb\Monday\Payload\Payload;
+use Onetoweb\Monday\Utils;
 
 /**
  * Column Value Endpoint.
@@ -49,5 +50,49 @@ class ColumnValue extends AbstractEndpoint
         ]);
         
         return $this->client->request($payload);
+    }
+    
+    /**
+     * @param array $fields = []
+     * @param array $itemFields = []
+     * @param array $boardArguments = []
+     * 
+     * @return array
+     */
+    public function readAllByBoard(array $fields = [], array $itemFields = [], array $boardArguments = []): array
+    {
+        $results = [];
+        
+        $cursor = null;
+        do {
+            
+            $result = $this->readByBoard($fields, $itemFields, $boardArguments, [
+                'limit' => 500,
+                'cursor' => $cursor
+            ]);
+            
+            // find cursor in result
+            $cursor = Utils::findCursor($result);
+            
+            // check  for item data
+            if (
+                isset($result['data']['boards'][0]['items_page']['items'])
+                and is_array($result['data']['boards'][0]['items_page']['items'])
+            ) {
+                
+                // add item to result
+                foreach ($result['data']['boards'][0]['items_page']['items'] as $item) {
+                    
+                    $results[] = $item;
+                }
+                
+            } else {
+                
+                return $result;
+            }
+        }
+        while ($cursor !== null);
+        
+        return $results;
     }
 }

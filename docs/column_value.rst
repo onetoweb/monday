@@ -58,6 +58,36 @@ Read column values by board
 Read all item and column values by board
 ````````````````````````````````````````
 
+When the limit of 500 items is exceeded multiple request are made to fetch all items under a board.
+
+.. code-block:: php
+    
+    $result = $client->columnValue->readAllByBoard([
+        
+        // column value fields to select
+        'id',
+        'type',
+        'value'
+    ], [
+        
+        // item fields to select
+        'id',
+        'name',
+        'state',
+        'created_at',
+        'updated_at',
+        'email',
+        'relative_link'
+    ], [
+        
+        // arguments for selecting a board
+        'ids' => 123456789,
+    ]);
+
+
+Use cursor to read all items and column values by board
+```````````````````````````````````````````````````````
+
 .. code-block:: php
     
     $cursor = null;
@@ -81,7 +111,7 @@ Read all item and column values by board
             'relative_link'
         ], [
             
-            // arguments for selecting boards
+            // arguments for selecting a board
             'ids' => 123456789,
         ], [
             
