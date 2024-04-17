@@ -11,6 +11,7 @@ use Onetoweb\Monday\Endpoint\Endpoints;
 /**
  * Monday Api Client.
  */
+#[\AllowDynamicProperties]
 class Client
 {
     /**

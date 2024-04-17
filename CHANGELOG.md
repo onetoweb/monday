@@ -111,3 +111,8 @@
 ## [2.0.5] - 2024-02-27
 
 - Add readAllByBoard to columnValue endpoint
+
+
+## [2.0.6] - 2024-04-17
+
+ - AllowDynamicProperties in Client to prevent php 8.2 deprecation notice
