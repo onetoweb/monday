@@ -116,3 +116,8 @@
 ## [2.0.6] - 2024-04-17
 
  - AllowDynamicProperties in Client to prevent php 8.2 deprecation notice
+
+
+## [2.0.7] - 2024-04-18
+
+ - Added OrderBy class for sorting results

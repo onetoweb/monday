@@ -16,6 +16,8 @@ Read items
 
 .. code-block:: php
     
+    use Onetoweb\Monday\Payload\OrderBy;
+    
     $result = $client->item->read([
         // item fields to select
         'id',
@@ -32,7 +34,10 @@ Read items
         'ids' => [123456789]
     ], [
         // arguments for selecting items under boards
-        'limit' => 5
+        'limit' => 5,
+        
+        // add sort order for items
+        'query_params' => new OrderBy('__last_updated__', 'desc'),
     ]);
 
 
