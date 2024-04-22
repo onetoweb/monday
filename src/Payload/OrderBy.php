@@ -36,7 +36,7 @@ class OrderBy
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return 'order_by: [ { column_id:"'.$this->columnId.'", direction:'.$this->direction.' } ]';
     }
